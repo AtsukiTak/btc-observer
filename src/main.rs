@@ -42,8 +42,7 @@ fn get_args() -> Args {
             Arg::with_name("sender_addr")
                 .short("s")
                 .multiple(true)
-                .takes_value(true)
-                .required(true),
+                .takes_value(true),
         )
         .get_matches();
     let receivers = matches
@@ -52,9 +51,10 @@ fn get_args() -> Args {
         .map(|s| Address::from_str(s).unwrap())
         .collect();
     let senders = matches
-        .values_of("sender_addr")
-        .unwrap()
-        .map(|s| Address::from_str(s).unwrap())
+        .values_of_lossy("sender_addr")
+        .unwrap_or(Vec::new())
+        .into_iter()
+        .map(|s| Address::from_str(s.as_str()).unwrap())
         .collect();
     Args {
         receiver_addrs: receivers,
