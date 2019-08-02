@@ -1,0 +1,14 @@
+[package]
+name = "chain-observer"
+version = "0.1.0"
+authors = ["AtsukiTak <takatomgoo@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bitcoin = "^0.18"
+bitcoincore-rpc = "^0.7"
+bitcoin_hashes = "^0.3"
+clap = "^2.33"
+lazy_static = "^1.3"
